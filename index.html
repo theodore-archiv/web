@@ -1,62 +1,102 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO & Metadata Dasar -->
-    <title>Theodore & Co.</title>
+   
+    <meta name="title" content="Theodore — Coming Soon">
     <meta name="description" content="Semua momen adalah hadiah, dan kami merawatnya. Clothing brand berbasis fotografi digicam otentik.">
-    <meta name="keywords" content="Theodore, Theodore Archives, Digicam Apparel, Clothing Brand Indonesia, Streetwear">
-    <meta name="author" content="Theodore">
+    <meta name="keywords" content="theodore, theodr, digicam, photography clothing, streetwear indonesia">
+    <meta name="author" content="Theodore Archives">
 
-    <!-- Open Graph / WhatsApp / Social Media Preview -->
+   
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theodr.web.id/">
     <meta property="og:title" content="Theodore — Coming Soon">
     <meta property="og:description" content="Semua momen adalah hadiah, dan kami merawatnya.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://theodr.my.id">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syne:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Hubungkan ke file CSS terpisah -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://theodr.web.id/">
+    <meta property="twitter:title" content="Theodore — Coming Soon">
+    <meta property="twitter:description" content="Semua momen adalah hadiah, dan kami merawatnya.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theodore</title>
+    <meta name="description" content="Semua momen adalah hadiah, dan kami merawatnya. Clothing brand berbasis fotografi digicam otentik.">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Hiasan ala indikator kamera -->
-    <div class="camera-ui-top">REC [●] ISO 400</div>
+    <div class="camera-ui-top" id="camera-indicator">REC [●] ISO 400 · 1/250s</div>
 
     <div class="container">
-        <!-- Teks yang bakal diketik otomatis -->
         <div class="typing-container">
             <span id="text-target"></span><span class="cursor"></span>
         </div>
         
-        <!-- Identitas Brand -->
-        <h1 class="brand-name">THEODORE</h1>
-        <div class="status-tag">— Coming Soon —</div>
+        <div class="brand-wrapper" id="brandWrapper">
+            <h1 class="brand-name">THEODORE</h1>
+            <div class="status-tag">— Coming Soon —</div>
+        </div>
     </div>
 
     <footer>
-        &copy; 2026 Theodore Archives. All rights reserved.
+        <div class="footer-email">hi@theodore.web.id</div>
+        <div class="footer-copy">&copy; 2026 Theodore Archives. All rights reserved.</div>
     </footer>
 
     <script>
-        const content = "semua momen adalah hadiah.\ndan kami merawatnya.";
+        const line1 = "semua momen adalah hadiah.";
+        const line2 = "\ndan kami merawatnya.";
         const target = document.getElementById("text-target");
-        let index = 0;
+        const brandWrapper = document.getElementById("brandWrapper");
+        
+        let i = 0;
+        let j = 0;
 
-        function typeWriter() {
-            if (index < content.length) {
-                target.innerHTML += content.charAt(index);
-                index++;
-                setTimeout(typeWriter, 70); // Kecepatan ngetik (ms)
+        function typeLine1() {
+            if (i < line1.length) {
+                target.innerHTML += line1.charAt(i);
+                i++;
+                setTimeout(typeLine1, 105);
+            } else {
+                setTimeout(typeLine2, 1300); 
             }
         }
 
-        // Mulai animasi ketik setelah jeda 0.8 detik
-        setTimeout(typeWriter, 800);
+        function typeLine2() {
+            if (j < line2.length) {
+                target.innerHTML += line2.charAt(j);
+                j++;
+                setTimeout(typeLine2, 105);
+            } else {
+                setTimeout(() => {
+                    brandWrapper.classList.add('show');
+                }, 700); 
+            }
+        }
+        
+        setTimeout(typeLine1, 800);
+
+        const indicator = document.getElementById("camera-indicator");
+        const states = [
+            "REC [●] ISO 400 · 1/250s",
+            "REC [  ] ISO 200 · 1/500s",
+            "REC [●] ISO 800 · 1/125s",
+            "STBY [ ] ISO 400 · 1/1000s"
+        ];
+        let stateIndex = 0;
+
+        setInterval(() => {
+            stateIndex = (stateIndex + 1) % states.length;
+            indicator.style.opacity = '0.2'; 
+            setTimeout(() => {
+                indicator.innerText = states[stateIndex];
+                indicator.style.opacity = '1';
+            }, 200);
+        }, 2200);
     </script>
 </body>
 </html>
