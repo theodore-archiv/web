@@ -27,6 +27,25 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+   <style>
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 1.5rem !important;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            header nav {
+                gap: 1.5rem !important;
+            }
+            main {
+                padding: 1.5rem !important;
+            }
+            main > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem !important;
+            }
+        }
+    </style>
 <body>
 
     <div class="camera-ui-top" id="camera-indicator">REC [●] ISO 400 · 1/250s</div>
